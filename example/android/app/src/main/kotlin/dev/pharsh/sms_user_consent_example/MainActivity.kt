@@ -11,19 +11,23 @@ import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 
 class MainActivity : FlutterActivity() {
+    private lateinit var methodChannel: MethodChannel
     private val CHANNEL = "sms_user_consent"
     private val CREDENTIAL_PICKER_REQUEST = 1  // Set to an unused request code
 
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
-        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler { call, result ->
+        methodChannel =
+                MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL)
+        methodChannel.setMethodCallHandler { call, result ->
             if (call.method == "requestPhoneNumber") {
                 requestHint();
                 result.success(null);
             }
-        }
 
+        }
     }
+
 
     // Construct a request for phone numbers and show the picker
     private fun requestHint() {
@@ -48,8 +52,14 @@ class MainActivity : FlutterActivity() {
                     val credential = data.getParcelableExtra<Credential>(Credential.EXTRA_KEY)
                     // credential.getId();  <-- will need to process phone number string
                     println("From onActivityResult: " + credential.id);
+                    methodChannel
+                            .invokeMethod("selectedPhoneNumber", credential.id)
+                } else {
+                    methodChannel.invokeMethod("selectedPhoneNumber", null)
                 }
-            // ...
+
         }
     }
 }
+
+

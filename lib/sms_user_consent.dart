@@ -1,16 +1,33 @@
-import 'dart:async';
-
 import 'package:flutter/services.dart';
 
 class SmsUserConsent {
   static const MethodChannel _channel = const MethodChannel('sms_user_consent');
+  Function _phoneNumberListener;
+  String _selectedPhoneNumber;
 
-  static Future<String> get platformVersion async {
-    final String version = await _channel.invokeMethod('getPlatformVersion');
-    return version;
+  SmsUserConsent({Function phoneNumberListener}) {
+    _phoneNumberListener = phoneNumberListener;
+    _channel.setMethodCallHandler((call) {
+      switch (call.method) {
+        case 'selectedPhoneNumber':
+          _selectedPhoneNumber = call.arguments;
+          _phoneNumberListener();
+          break;
+        default:
+      }
+      return;
+    });
   }
 
-  static Future<void> get requestPhoneNumber async {
-    await _channel.invokeMethod('requestPhoneNumber');
+  void dispose() {
+    _phoneNumberListener = null;
   }
+
+  void updatePhoneNumberListener(Function listener) =>
+      _phoneNumberListener = listener;
+
+  String get selectedPhoneNumber => _selectedPhoneNumber;
+
+  void requestPhoneNumber() async =>
+      await _channel.invokeMethod('requestPhoneNumber');
 }

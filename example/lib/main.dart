@@ -11,6 +11,20 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  SmsUserConsent smsUserConsent;
+
+  @override
+  void initState() {
+    super.initState();
+    smsUserConsent = SmsUserConsent(phoneNumberListener: () => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    smsUserConsent.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,11 +33,17 @@ class _MyAppState extends State<MyApp> {
               title: const Text('Plugin example app'),
             ),
             body: Center(
-              child: Text('Tap FAB to request Phone number'),
-            ),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                  Text('Tap FAB to request Phone number'),
+                  SizedBox(height: 16.0),
+                  Text(
+                      'Selected Phone number: ${smsUserConsent.selectedPhoneNumber}')
+                ])),
             floatingActionButton: FloatingActionButton(
               child: Icon(Icons.phone_android),
-              onPressed: () => SmsUserConsent.requestPhoneNumber,
+              onPressed: () => smsUserConsent.requestPhoneNumber(),
             )));
   }
 }
