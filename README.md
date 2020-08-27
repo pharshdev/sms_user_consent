@@ -74,7 +74,7 @@ As per the [SMS User Consent API](https://developers.google.com/identity/sms-ret
 
 * Found a bug or idea to improve the plugin? Send a PR.
 * Found this plugin helpful and want to thank me? I love [:coffee:](https://paypal.me/pharshdev) 
-* Want to hire me for a gig? Let's talk on [LinkedIn](www.linkedin.com/in/pharshdev)
+* Want to hire me for a gig? Let's talk on [LinkedIn](https://linkedin.com/in/pharshdev)
 
 ## License
 
