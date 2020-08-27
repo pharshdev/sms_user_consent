@@ -1,8 +1,7 @@
 name: sms_user_consent
-description: A new flutter plugin project.
+description: Implements Android's SMS User Consent API
 version: 0.0.1
-author:
-homepage:
+repository: https://github.com/pharshdev/sms_user_consent
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
