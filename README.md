@@ -10,9 +10,9 @@ In a nutshell, prompt the user to grant access to the content of a single SMS me
 ## Screenshots
 
 <p float="left">
-  <img src="https://github.com/pharshdev/sms_user_consent/blob/master/ss1.png" width="250" />
-  <img src="https://github.com/pharshdev/sms_user_consent/blob/master/ss2.png" width="250" /> 
-  <img src="https://github.com/pharshdev/sms_user_consent/blob/master/ss3.png" width="250" />
+  <img src="https://raw.githubusercontent.com/pharshdev/sms_user_consent/master/ss1.png" width="250" />
+  <img src="https://raw.githubusercontent.com/pharshdev/sms_user_consent/master/ss2.png" width="250" /> 
+  <img src="https://raw.githubusercontent.com/pharshdev/sms_user_consent/master/ss3.png" width="250" />
 </p>
 
 ## Steps to use
@@ -34,7 +34,7 @@ SmsUserConsent smsUserConsent = SmsUserConsent(
 
 2] **OPTIONAL** :  Request user's phone number
 
-<img src="https://github.com/pharshdev/sms_user_consent/blob/master/ss4.png" width="250" />
+<img src="https://raw.githubusercontent.com/pharshdev/sms_user_consent/master/ss4.png" width="250" />
 
 ```
 smsUserConsent.requestPhoneNumber();
