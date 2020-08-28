@@ -1,15 +1,11 @@
 # sms_user_consent
 
-> Implements Android's [SMS User Consent API](https://developers.google.com/identity/sms-retriever/user-consent/overview)
-
-
-In a nutshell, prompt the user to grant access to the content of a single SMS message. When the user gives consent, you will then have access to the entire message body.
-
-**Bonus:** You can even request user's phone number (supports dual sim phones).
+Request user's phone number (supports dual sim) and/or consent to read SMS without adding any permissions, using Android's [SMS User Consent API](https://developers.google.com/identity/sms-retriever/user-consent/overview)
 
 ## Screenshots
 
 <p float="left">
+  <img src="https://raw.githubusercontent.com/pharshdev/sms_user_consent/master/ss4.png" width="250" />
   <img src="https://raw.githubusercontent.com/pharshdev/sms_user_consent/master/ss1.png" width="250" />
   <img src="https://raw.githubusercontent.com/pharshdev/sms_user_consent/master/ss2.png" width="250" /> 
   <img src="https://raw.githubusercontent.com/pharshdev/sms_user_consent/master/ss3.png" width="250" />
@@ -32,9 +28,7 @@ SmsUserConsent smsUserConsent = SmsUserConsent(
 );
 ```
 
-2] **OPTIONAL** :  Request user's phone number
-
-<img src="https://raw.githubusercontent.com/pharshdev/sms_user_consent/master/ss4.png" width="250" />
+2a] **OPTIONAL** : Request user's phone number
 
 ```
 smsUserConsent.requestPhoneNumber();
@@ -44,7 +38,7 @@ Once the user selects a phone number, it can be accessed as
 smsUserConsent.selectedPhoneNumber;
 ```
 
-3] Request to receive SMS 
+2b] **OPTIONAL** : Request to receive SMS 
 ```
 smsUserConsent.requestSms(); 
 ```
@@ -57,7 +51,7 @@ Once the user receives a SMS and the user taps **Allow**, it can be accessed as
 smsUserConsent.receivedSms;
 ```
 
-4] Finally, dispose the instance
+3] Finally, dispose the instance
 ```
 smsUserConsent.dispose();
 ```
