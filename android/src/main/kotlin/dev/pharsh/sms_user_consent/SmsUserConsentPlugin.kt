@@ -59,7 +59,7 @@ class SmsUserConsentPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
             when (requestCode) {
                 CREDENTIAL_PICKER_REQUEST -> {// Obtain the phone number from the result
                     if (resultCode == Activity.RESULT_OK && data != null) {
-                        channel.invokeMethod("selectedPhoneNumber", data.getParcelableExtra<Credential>(Credential.EXTRA_KEY).id)
+                        channel.invokeMethod("selectedPhoneNumber", data.getParcelableExtra<Credential>(Credential.EXTRA_KEY)?.id)
                     } else {
                         channel.invokeMethod("selectedPhoneNumber", null)
                     }
