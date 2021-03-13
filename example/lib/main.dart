@@ -13,7 +13,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  SmsUserConsent smsUserConsent;
+  late SmsUserConsent smsUserConsent;
 
   @override
   void initState() {
