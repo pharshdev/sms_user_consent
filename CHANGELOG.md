@@ -1,3 +1,7 @@
+## 0.1.0
+
+* Migrate to null safety. Credits to san-smith (https://github.com/san-smith) 
+
 ## 0.0.6
 
 * Beta
