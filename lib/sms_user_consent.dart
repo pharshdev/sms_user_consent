@@ -7,16 +7,16 @@ import 'package:flutter/services.dart';
 /// consent to read a single SMS verification message.
 class SmsUserConsent {
   static const MethodChannel _channel = const MethodChannel('sms_user_consent');
-  Function _phoneNumberListener;
-  Function _smsListener;
-  String _selectedPhoneNumber;
-  String _receivedSms;
+  Function? _phoneNumberListener;
+  Function? _smsListener;
+  String? _selectedPhoneNumber;
+  String? _receivedSms;
 
   /// Last selected phone number
-  String get selectedPhoneNumber => _selectedPhoneNumber;
+  String? get selectedPhoneNumber => _selectedPhoneNumber;
 
   /// Last received sms
-  String get receivedSms => _receivedSms;
+  String? get receivedSms => _receivedSms;
 
   /// SmsUserConsent plugin works only on Android, hence make sure to check the
   /// platform is Android.
@@ -29,22 +29,21 @@ class SmsUserConsent {
   /// - The message contains a 4-10 character alphanumeric string with at least one number.
   /// - The message was sent by a phone number that's not in the user's contacts.
   /// - If you specified the sender's phone number, the message was sent by that number.
-  SmsUserConsent({Function phoneNumberListener, Function smsListener}) {
+  SmsUserConsent({Function? phoneNumberListener, Function? smsListener}) {
     _phoneNumberListener = phoneNumberListener;
     _smsListener = smsListener;
-    _channel.setMethodCallHandler((call) {
+    _channel.setMethodCallHandler((call) async {
       switch (call.method) {
         case 'selectedPhoneNumber':
           _selectedPhoneNumber = call.arguments;
-          _phoneNumberListener();
+          _phoneNumberListener!();
           break;
         case 'receivedSms':
           _receivedSms = call.arguments;
-          _smsListener();
+          _smsListener!();
           break;
         default:
       }
-      return;
     });
   }
 
@@ -78,6 +77,6 @@ class SmsUserConsent {
   ///
   /// Once a sms is received, you will have to call this method again to receive
   /// another sms.
-  void requestSms({String senderPhoneNumber}) async => await _channel
+  void requestSms({String? senderPhoneNumber}) async => await _channel
       .invokeMethod('requestSms', {"senderPhoneNumber": senderPhoneNumber});
 }
