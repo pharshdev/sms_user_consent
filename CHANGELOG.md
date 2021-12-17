@@ -1,3 +1,8 @@
+## 0.1.1
+
+* Detect the broadcast intent is from SMS Retriever API by adding
+* the SmsRetriever.SEND_PERMISSION permission to receiver.
+
 ## 0.1.0
 
 * Migrate to null safety. Credits to san-smith (https://github.com/san-smith) 
