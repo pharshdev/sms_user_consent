@@ -69,11 +69,19 @@ class SmsUserConsentPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                     if (resultCode == Activity.RESULT_OK && data != null) {
                         channel
                                 .invokeMethod("receivedSms", data.getStringExtra(SmsRetriever.EXTRA_SMS_MESSAGE))
-                        mActivity.unregisterReceiver(smsVerificationReceiver)
+                        try {
+                            mActivity.unregisterReceiver(smsVerificationReceiver)
+                        } catch (ex: Exception) {
+                            // silent catch to avoid crash if receiver is not registered
+                        }
                     } else {
                         // Consent denied. User can type OTC manually.
                         channel.invokeMethod("receivedSms", null)
-                        mActivity.unregisterReceiver(smsVerificationReceiver)
+                        try {
+                            mActivity.unregisterReceiver(smsVerificationReceiver)
+                        } catch (ex: Exception) {
+                            // silent catch to avoid crash if receiver is not registered
+                        }
                     }
                     true
                 }
