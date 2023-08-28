@@ -110,6 +110,9 @@ class SmsUserConsentPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
         override fun onReceive(context: Context, intent: Intent) {
             if (SmsRetriever.SMS_RETRIEVED_ACTION == intent.action) {
                 val extras = intent.extras
+                if (extras == null) {
+                    return;
+                }
                 val smsRetrieverStatus = extras?.get(SmsRetriever.EXTRA_STATUS) as Status
 
                 when (smsRetrieverStatus.statusCode) {
